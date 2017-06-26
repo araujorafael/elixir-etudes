@@ -5,7 +5,7 @@ defmodule Geom do
   @vsn 0.1
 
   @doc """
-  Calculates the area of a rectangle, given the length and width.
+  Calculates the area of a rectangle, triangle and ellipse given the length and width.
   Returns the product of its arguments. The default value for
   both arguments is 1.
   """
