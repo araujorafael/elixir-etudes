@@ -47,7 +47,11 @@ defmodule AskArea do
 
     defp get_number(name) do
         input = IO.gets("Enter #{name} > ")
-        String.to_integer(String.strip(input))
+        input_str = String.strip(input)
+        cond do
+            Regex.match?(~r/\d+([,\.]\d+|)$/, input) -> String.to_integer(input_str)
+            true -> :error
+        end
     end
 
     # Get all dimenssions that must be givem by user calling get_number/1 function
@@ -65,7 +69,15 @@ defmodule AskArea do
     @spec calculate(atom(), number(), number()) :: number()
 
     defp calculate(shape, d1, d2) do
-        Geom.area({shape, d1, d2})
+        cond do
+            shape == :unknown -> IO.puts("unknown shape #{d1}")
+            d1 == :error -> IO.puts("format error")
+            d2 == :error -> IO.puts("format error")
+            d1 < 0 or d2 < 0 ->
+                IO.puts("Both numbers must be greater than or equal to zero.")
+            true -> Geom.area({shape, d1, d2})
+        end
+
     end
 
 end
