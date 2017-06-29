@@ -22,20 +22,20 @@ defmodule Stats do
         result
     end
 
-    # if number is grater then head call minimum/2 function passing the tail and number
-
-    @spec minimum([number()], number()) :: number()
-
-    defp minimum([head|tail], number) when head < number do
-        minimum(tail, head)
-    end
-
     # if number is grater then head call minimum/2 function passing the tail and head
 
     @spec minimum([number()], number()) :: number()
 
     defp minimum([head|tail], number) when head > number do
         minimum(tail, number)
+    end
+
+    # if number is grater then head call minimum/2 function passing the tail and number
+
+    @spec minimum([number()], number()) :: number()
+
+    defp minimum([head|tail], _number) do
+        minimum(tail, head)
     end
 
     @doc """
@@ -63,7 +63,7 @@ defmodule Stats do
 
     @spec maximum([number()], number()) :: number()
 
-    defp maximum([head|tail], max) when head > max do
+    defp maximum([head|tail], _max) do
         maximum(tail, head)
     end
 
