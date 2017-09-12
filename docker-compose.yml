@@ -1,0 +1,9 @@
+version: '3'
+services:
+  elixir:
+    build: ./
+    volumes:
+      - ./:/etudes
+    command: iex 
+    stdin_open: true
+    tty: true
